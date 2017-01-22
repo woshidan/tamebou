@@ -47,7 +47,7 @@ module Tamebou
                 Module.const_get("Tamebou::Helpers::#{helper_class_name}").send(:new, option_value)
               rescue NoMethodError, NameError => e
                 warning_not_found_helper if @is_warning_parse_failure
-                Module.const_get("Tamebou::Helpers::").send(:new, option_value)
+                Module.const_get("Tamebou::Helpers::Base").send(:new, option_value)
               end
               print_test_code
             end
