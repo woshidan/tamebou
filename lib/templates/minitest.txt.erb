@@ -1,0 +1,25 @@
+class Test<%= @model_name %> < MiniTest::Unit::TestCase
+  def setup
+    @<%= @model_name_in_snake_case %> = build(:<%= @model_name_in_snake_case %>)
+  end
+
+  def teardown
+    # you can some clean up code in this method
+  end
+
+  def test_valid_<%= @field_name %>_values_in_terms_of_<%= @option_name %>
+    expected_values = <%= @helper.expected_values %>
+    expected_values.each do |expected_value|
+      @<%= @model_name_in_snake_case %>.<%= @field_name %> = expected_value
+      assert @<%= @model_name_in_snake_case %>.valid?
+    end
+  end
+
+  def test_invalid_<%= @field_name %>_values_in_terms_of_<%= @option_name %>
+    invalid_values = <%= @helper.unexpected_values %>
+    invalid_values.each do |invalid_value|
+      @<%= @model_name_in_snake_case %>.<%= @field_name %> = invalid_value
+      assert_not @<%= @model_name_in_snake_case %>.valid?
+    end
+  end
+end

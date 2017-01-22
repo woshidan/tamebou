@@ -1,0 +1,19 @@
+context "validate <%= @model_name %>" do
+  # you have to write some setup
+
+  describe "The <%= @field_name %> values <%= @model_name %> expects in terms of <%= @option_name %>" do
+    expected_values = <%= @helper.expected_values %>
+    expected_values.each do |expected_value|
+      let(:<%= @field_name %>, expected_value)
+      it { is_expected.to be_valid }
+    end
+  end
+
+  describe "The <%= @field_name %> values <%= @model_name %> doesn't expect in terms of <%= @option_name %>" do
+    unexpected_values = <%= @helper.unexpected_values %>
+    unexpected_values.each do |unexpected_value|
+      let(:<%= @field_name %>, unexpected_value)
+      it { is_expected.not_to be_valid }
+    end
+  end
+end
